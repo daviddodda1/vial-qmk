@@ -16,33 +16,22 @@
 
 #include "quantum.h"
 
-#ifdef OLED_ENABLE
-
-static void render_logo(void) {
-    static const char PROGMEM qmk_logo[] = {
-        0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86, 0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E, 0x8F, 0x90, 0x91, 0x92, 0x93, 0x94,
-        0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0xAA, 0xAB, 0xAC, 0xAD, 0xAE, 0xAF, 0xB0, 0xB1, 0xB2, 0xB3, 0xB4,
-        0xC0, 0xC1, 0xC2, 0xC3, 0xC4, 0xC5, 0xC6, 0xC7, 0xC8, 0xC9, 0xCA, 0xCB, 0xCC, 0xCD, 0xCE, 0xCF, 0xD0, 0xD1, 0xD2, 0xD3, 0xD4, 0x00
-    };
-
-    oled_write_P(qmk_logo, false);
-}
-
-oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
-    if (is_keyboard_master()) {
-        return OLED_ROTATION_180;
+#define LAYOUT( \
+    LA1, LA2, LA3, LA4, LA5, LA6,           RA6, RA5, RA4, RA3, RA2, RA1, \
+    LB1, LB2, LB3, LB4, LB5, LB6, LB7, RB7, RB6, RB5, RB4, RB3, RB2, RB1, \
+    LC1, LC2, LC3, LC4, LC5, LC6, LE1, RE6, RC6, RC5, RC4, RC3, RC2, RC1, \
+    LD1, LD2, LD3, LD4, LD5, LD6, LD7, RD7, RD6, RD5, RD4, RD3, RD2, RD1, \
+              LE2, LE3, LE4, LE5, LE6, RE5, RE4, RE3, RE2, RE1 			  \
+    ) \
+    { \
+        { LA1, LA2, LA3, LA4, LA5, LA6,	KC_NO }, \
+        { LB1, LB2, LB3, LB4, LB5, LB6,	LB7 }, \
+        { LC1, LC2, LC3, LC4, LC5, LC6,	KC_NO }, \
+        { LD1, LD2, LD3, LD4, LD5, LD6,	LD7 }, \
+        { LE1, LE2, LE3, LE4, LE5, LE6,	KC_NO }, \
+        { RA1, RA2, RA3, RA4, RA5, RA6,	KC_NO }, \
+        { RB1, RB2, RB3, RB4, RB5, RB6,	RB7 }, \
+        { RC1, RC2, RC3, RC4, RC5, RC6,	KC_NO }, \
+        { RD1, RD2, RD3, RD4, RD5, RD6,	RD7 }, \
+        { RE1, RE2, RE3, RE4, RE5, RE6,	KC_NO } \
     }
-    return rotation;
-}
-
-bool oled_task_kb(void) {
-    if (!oled_task_user()) {
-        return false;
-    }
-
-    render_logo();
-
-    return false;
-}
-
-#endif

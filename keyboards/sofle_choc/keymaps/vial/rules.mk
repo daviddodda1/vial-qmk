@@ -1,7 +1,7 @@
-OLED_ENABLE = no
-ENCODER_ENABLE = no
+OLED_ENABLE = yes
+ENCODER_ENABLE = yes
 CONSOLE_ENABLE = no
-EXTRAKEY_ENABLE = no
+EXTRAKEY_ENABLE = yes
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
 ENCODER_MAP_ENABLE = no
@@ -14,3 +14,9 @@ MOUSEKEY_ENABLE = no
 COMBO_ENABLE = no
 KEY_OVERRIDE_ENABLE = no
 RGB_MATRIX_ENABLE = no
+SPLIT_KEYBOARD = yes	# Split keyboard
+WPM_ENABLE = yes		# WPM counter for keyboard pets (+1298)
+
+
+MCU = atmega32u4
+BOOTLOADER = atmel-dfu
