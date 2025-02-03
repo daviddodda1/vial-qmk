@@ -24,3 +24,5 @@ LTO_ENABLE = yes		# Save space
 
 
 MCU = atmega32u4
+BOOTLOADER = atmel-dfu
+

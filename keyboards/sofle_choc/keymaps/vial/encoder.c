@@ -20,25 +20,23 @@
 
 #ifdef ENCODER_ENABLE
 bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (index == 0) {
-        if (clockwise) {
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 1, .col = 6}, .pressed = true, .time = (timer_read() | 1)  });  
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 1, .col = 6}, .pressed = false, .time = (timer_read() | 1)  });
-        	} 
-        	else {
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 3, .col = 6}, .pressed = true, .time = (timer_read() | 1)  });
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 3, .col = 6}, .pressed = false, .time = (timer_read() | 1)  });  
-            }
-    } else if (index == 1) {
-        if (clockwise) {  //Double check rotation on new flash versus via mapping
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 6, .col = 6}, .pressed = true, .time = (timer_read() | 1)  });  
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 6, .col = 6}, .pressed = false, .time = (timer_read() | 1)  });
-        	} 
-        	else {
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 8, .col = 6}, .pressed = true, .time = (timer_read() | 1)  });
-        	action_exec((keyevent_t){.key = (keypos_t){.row = 8, .col = 6}, .pressed = false, .time = (timer_read() | 1)  });  
-            }
+    static const uint8_t encoder_actions[][2] = {
+        {1, 3},  // First encoder: row positions for clockwise/counterclockwise
+        {6, 8}   // Second encoder: row positions for clockwise/counterclockwise
+    };
+    
+    if (index < 2) {
+        uint8_t row = encoder_actions[index][!clockwise];
+        keyevent_t event = {
+            .key = (keypos_t){.row = row, .col = 6},
+            .pressed = true,
+            .time = (timer_read() | 1)
+        };
+        
+        action_exec(event);
+        event.pressed = false;
+        action_exec(event);
     }
-	return true;
+    return true;
 }
 #endif
