@@ -131,9 +131,9 @@
     },
     "url": "https://github.com/josefadamcik/SofleKeyboard",
     "usb": {
-        "device_version": "0.0.1",
-        "pid": "0x5343",
-        "vid": "0x424C"
+        "device_version": "0.0.2",
+        "pid": "0x0287",
+        "vid": "0xFC32"
     },
     "ws2812": {
         "pin": "D3"
