@@ -1,9 +1,12 @@
 OLED_ENABLE = yes
 ENCODER_ENABLE = yes
+
 CONSOLE_ENABLE = no
 EXTRAKEY_ENABLE = no
+
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
+
 ENCODER_MAP_ENABLE = no
 LTO_ENABLE = no
 BACKLIGHT_ENABLE = no
@@ -14,8 +17,10 @@ MOUSEKEY_ENABLE = no
 COMBO_ENABLE = no
 KEY_OVERRIDE_ENABLE = no
 RGB_MATRIX_ENABLE = no
-WPM_ENABLE = no		# WPM counter for keyboard pets (+1298)
+
+WPM_ENABLE = yes		# WPM counter for keyboard pets (+1298)
+LTO_ENABLE = yes		# Save space
+
 
 
 MCU = atmega32u4
-BOOTLOADER = atmel-dfu

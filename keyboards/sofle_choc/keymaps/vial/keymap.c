@@ -22,21 +22,14 @@
 #ifdef OLED_ENABLE
 	//#include "oled.c" //Stock OLED code
 	//Note that the keyboard animations below take a large amount of space!
-		#include "bongocat.c" //OLED code for Bongocat, original code by foureight84. Disable RGBLIGHT to make enough space.
+		//#include "bongocat.c" //OLED code for Bongocat, original code by foureight84. Disable RGBLIGHT to make enough space.
 		//#include "luna.c" //OLED code for Luna, original code by Hellsingcoder and adapted by Jackasaur.
-		//#include "snakey.c" //OLED code for Snakey, customized from Luna.
-#endif
-
-#ifdef RGBLIGHT_ENABLE
-	extern rgblight_config_t rgblight_config; // To pull layer status for RGBLIGHT
+		#include "snakey.c" //OLED code for Snakey, customized from Luna.
 #endif
 
 
-bool is_alt_tab_active = false; // Super Alt Tab Code
-uint16_t alt_tab_timer = 0;
-bool lshift_held = false;	// LShift Backspace Delete whole Word Code
-bool rshift_held = false;	// RShift Backspace Delete whole Word Code
-//static uint16_t held_shift = 0;
+
+
 
 
 
@@ -91,15 +84,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {  //Can skip these
 void matrix_init_user(void) {
 }
 
-void matrix_scan_user(void) {
-  if (is_alt_tab_active) {
-    if (timer_elapsed(alt_tab_timer) > 1000) {
-      unregister_code(KC_LALT);
-      is_alt_tab_active = false;
-    }
-  }
-}
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	#ifdef KEYBOARD_PET
@@ -108,27 +92,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		}
 	#endif
 	
-	switch (keycode) { //For keycode overrides
-		// KEYBOARD PET STATUS
-		#ifdef KEYBOARD_PET
-			case KC_LCTL:
-			case KC_RCTL:
-				if (record->event.pressed) {
-					isSneaking = true;
-				} else {
-					isSneaking = false;
-				}
-				return true;
-			case KC_SPC:
-				if (record->event.pressed) {
-					isJumping = true;
-					showedJump = false;
-				} else {
-					isJumping = false;
-				}
-				return true;
-		#endif
-		}
+
 
 	return true;
 }

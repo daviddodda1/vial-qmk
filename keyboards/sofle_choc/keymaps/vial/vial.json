@@ -2,36 +2,7 @@
     "name": "Sofle",
     "vendorId": "0xFC32",
     "productId": "0x0287",
-    "lighting": "vialrgb",
-
-    "matrix": { "rows": 10, "cols": 6 },
-    "customKeycodes": [
-    {
-      "name": "Super Alt Tab FWD",
-      "title": "Alt Tab Forwards in Windows",
-      "shortName": "ATABF"
-    },
-    {
-      "name": "Super Alt Tab REV",
-      "title": "Alt Tab Reverse in Windows",
-      "shortName": "ATABR"
-    },
-    {
-      "name": "Move Window Right",
-      "title": "Move Window Right in Windows",
-      "shortName": "MWR"
-    },
-    {
-      "name": "Move Window Left",
-      "title": "Move Window Left in Windows",
-      "shortName": "MWL"
-    },
-    {
-      "name": "Shift-BSPC",
-      "title": "Shift-Backspace to Delete Whole Words",
-      "shortName": "SBS"
-    }
-  ],
+    "matrix": { "rows": 10, "cols": 7 },
     "layouts": {
         "keymap": [
             {
