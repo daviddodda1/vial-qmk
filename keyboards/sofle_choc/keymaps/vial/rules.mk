@@ -2,27 +2,29 @@ OLED_ENABLE = yes
 ENCODER_ENABLE = yes
 
 CONSOLE_ENABLE = no
-EXTRAKEY_ENABLE = no
+EXTRAKEY_ENABLE = yes
 
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
 
 ENCODER_MAP_ENABLE = no
-LTO_ENABLE = no
 BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = no
 VIALRGB_ENABLE = no
 QMK_SETTINGS = no
-MOUSEKEY_ENABLE = no
+MOUSEKEY_ENABLE = yes
 COMBO_ENABLE = no
 KEY_OVERRIDE_ENABLE = no
 RGB_MATRIX_ENABLE = no
 
-WPM_ENABLE = yes		# WPM counter for keyboard pets (+1298)
+WPM_ENABLE = no		# WPM counter for keyboard pets (+1298)
 LTO_ENABLE = yes		# Save space
 
-
+PS2_MOUSE_ENABLE = yes
+PS2_ENABLE = yes
+PS2_DRIVER = interrupt
 
 MCU = atmega32u4
 BOOTLOADER = atmel-dfu
+
 
