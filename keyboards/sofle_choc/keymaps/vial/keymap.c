@@ -4,6 +4,11 @@
     #include "luna.c"
 #endif
 
+// Trackpad function declarations (from trackpad.c)
+void trackpad_init(void);
+void trackpad_task(void);
+
+
 // Single layout definition since using VIA
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT(
@@ -15,3 +20,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+
+// Add trackpad initialization and processing
+void keyboard_post_init_user(void) {
+    // Initialize trackpad when keyboard starts
+    trackpad_init();
+    
+    // Enable the pointing device feature
+    pointing_device_init();
+}
+
+// Process trackpad data in the main loop
+void housekeeping_task_user(void) {
+    // Call trackpad task to process data
+    trackpad_task();
+}
+
+#ifdef OLED_ENABLE
+    void suspend_power_down_user(void) {
+        oled_off();
+    }
+#endif

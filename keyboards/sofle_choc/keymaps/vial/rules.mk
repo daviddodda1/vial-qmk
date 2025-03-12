@@ -1,8 +1,8 @@
 OLED_ENABLE = yes
-ENCODER_ENABLE = yes
+ENCODER_ENABLE = no
 
-CONSOLE_ENABLE = no
-EXTRAKEY_ENABLE = yes
+CONSOLE_ENABLE = no     # Enable console for debugging
+EXTRAKEY_ENABLE = yes    # Enable for media keys
 
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
@@ -12,19 +12,21 @@ BACKLIGHT_ENABLE = no
 RGBLIGHT_ENABLE = no
 VIALRGB_ENABLE = no
 QMK_SETTINGS = no
-MOUSEKEY_ENABLE = yes
 COMBO_ENABLE = no
 KEY_OVERRIDE_ENABLE = no
 RGB_MATRIX_ENABLE = no
 
-WPM_ENABLE = no		# WPM counter for keyboard pets (+1298)
-LTO_ENABLE = yes		# Save space
+# Enable pointer device support for trackpad
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = custom
 
-PS2_MOUSE_ENABLE = yes
-PS2_ENABLE = yes
-PS2_DRIVER = interrupt
+# Required for mouse buttons
+MOUSEKEY_ENABLE = yes
 
-MCU = atmega32u4
-BOOTLOADER = atmel-dfu
+WPM_ENABLE = no        # WPM counter for keyboard pets
+LTO_ENABLE = yes        # Save space
 
+# Enable debugging output
+CONSOLE_ENABLE = no     # Duplicate, but keeping for clarity
 
+SRC += trackpad.c

@@ -5,8 +5,6 @@
 /* timers */
 uint32_t oled_timer = 0; // For OLED timeout
 
-/* status variables */
-led_t led_usb_state;
 
 static void print_status_narrow(void) {
     // Print current layer
@@ -37,11 +35,6 @@ static void print_status_narrow(void) {
     oled_set_cursor(0, 7);
     oled_write("kbrd", false);
     
-    // Optional: Display lock states
-    oled_set_cursor(0, 10);
-    oled_write("CAPS", led_usb_state.caps_lock);
-    oled_set_cursor(0, 11);
-    oled_write("NUM", !(led_usb_state.num_lock));
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -49,16 +42,8 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 }
 
 bool oled_task_user(void) {
-    led_usb_state = host_keyboard_led_state();
 
-    // Turn off OLED after timeout
-    if (timer_elapsed32(oled_timer) > 30000) {
-        oled_off();
-        return false;
-    } else {
-        oled_on();
-    }
-    
+    oled_on();
     oled_clear();
     print_status_narrow();
 

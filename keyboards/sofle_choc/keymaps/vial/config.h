@@ -31,41 +31,26 @@
  #define VIAL_UNLOCK_COMBO_ROWS { 0, 5, 3, 8 }
  #define VIAL_UNLOCK_COMBO_COLS { 0, 0, 0, 0 }
  
+ // Layer count
  #define DYNAMIC_KEYMAP_LAYER_COUNT 4
  
- /* PS/2 Mouse support - using the right half OLED pins */
-/* PS/2 Mouse support - using the right half OLED pins */
-#define PS2_CLOCK_PIN D0  // Using former OLED clock pin
-#define PS2_DATA_PIN D1   // Using former OLED data pin
-
-#ifdef PS2_DRIVER_INTERRUPT
-
-#define PS2_INT_INIT()  do {    \
-    EICRA |= ((1<<ISC21) |      \
-              (0<<ISC20));      \
-} while (0)
-#define PS2_INT_ON()  do {      \
-    EIMSK |= (1<<INT2);         \
-} while (0)
-#define PS2_INT_OFF() do {      \
-    EIMSK &= ~(1<<INT2);        \
-} while (0)
-#define PS2_INT_VECT   INT2_vect
-#endif
-
-// Remove PS2_USE_BUSYWAIT_INTERRUPT
+ // Pointing device configuration
+ #define POINTING_DEVICE_RIGHT       // Right half has the pointing device
+ #define SPLIT_POINTING_ENABLE       // Enable split pointing device support
  
- /* Disable OLED on right half since pins are used for trackpad */
- #ifdef OLED_ENABLE
-   #define OLED_DISPLAY_128X64
-   #define SPLIT_OLED_ENABLE
-   #define SPLIT_TRANSPORT_MIRROR
-   #define OLED_TIMEOUT 30000  // 30 seconds
+ // Mouse movement speed/sensitivity
+ #define MOUSE_EXTENDED_REPORT       // Better resolution
+ #define MOUSEKEY_INTERVAL 16        // How often cursor is updated (milliseconds)
+ #define MOUSEKEY_TIME_TO_MAX 40     // How long until it reaches maximum speed
+ #define MOUSEKEY_WHEEL_TIME_TO_MAX 8// How long until wheel reaches maximum speed
+ #define MOUSEKEY_DELAY 100          // Delay before starting movement
  
-   // Only use OLED on master side (assuming left)
-   #define OLED_DISPLAY_ADDRESS 0x3C
-   #undef OLED_DISPLAY_ADDRESS_RIGHT
- #endif
+ // Debug options - enable these for troubleshooting
+ // #define DEBUG_MATRIX_SCAN_RATE
+//  #define SPLIT_TRANSACTION_IDS_USER 0x10 // Add more transaction IDs if needed
  
- /* Define master as left since right half uses OLED pins for trackpad */
- #define MASTER_LEFT
+ // Disable OLED on the right half since we're using those pins for the trackpad
+ #define OLED_DISPLAY_128X64
+ #define OLED_BRIGHTNESS 90
+ #define OLED_TIMEOUT 30000          // Turn off OLED after 30 seconds of inactivity
+ #define SPLIT_OLED_ENABLE           // Only enable OLED on left half
